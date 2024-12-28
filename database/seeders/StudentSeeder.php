@@ -2,29 +2,42 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 use App\Models\Student;
+
+use App\Enums\Gender;
 
 class StudentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $students = [
-            ['name' => 'Balaji', 'roll_no' => '101', 'email' => 'balaji@school.edu', 'gender' => 'Male', 'dob' => '2001-05-14'],
-            ['name' => 'Badri', 'roll_no' => '102', 'email' => 'badri@school.edu', 'gender' => 'Male', 'dob' => '2002-03-22'],
-            ['name' => 'Subhasree', 'roll_no' => '103', 'email' => 'subhasree@school.edu', 'gender' => 'Female', 'dob' => '2003-07-09'],
-            ['name' => 'Dharsan', 'roll_no' => '104', 'email' => 'dharsan@school.edu', 'gender' => 'Male', 'dob' => '2001-11-25'],
-            ['name' => 'Melvin', 'roll_no' => '105', 'email' => 'melvin@school.edu', 'gender' => 'Male', 'dob' => '2002-09-18'],
-            ['name' => 'Rajendaran', 'roll_no' => '106', 'email' => 'rajendaran@school.edu', 'gender' => 'Male', 'dob' => '2000-01-30'],
+            [
+                'name' => 'John Doe',
+                'roll_no' => 'S001',
+                'email' => 'john.doe@example.com',
+                'gender' => Gender::MALE,
+                'dob' => '2005-01-15'
+            ],
+            [
+                'name' => 'Jane Smith',
+                'roll_no' => 'S002',
+                'email' => 'jane.smith@example.com',
+                'gender' => Gender::FEMALE,
+                'dob' => '2006-02-20'
+            ],
         ];
+        
+        // Student::insert($students);
 
-        foreach ($students as $student) {
-            Student::create($student);
+        foreach ($students as $row) 
+        {
+            Student::create($row);
         }
     }
 }

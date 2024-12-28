@@ -2,34 +2,57 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 use App\Models\Group;
+
 use App\Models\Section;
+
 use App\Models\GroupSection;
 
 class GroupSectionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $groups = Group::all();
-        $sections = Section::all();
 
-        foreach ($groups as $group) {
-            foreach ($sections as $section) {
-                // Create a new GroupSection record
-                $groupSection = GroupSection::create([
-                    // If you have specific attributes in the GroupSection model, add them here
-                ]);
+        $first_group = Group::where('name', 'First')->first();
+        
+        $a_section = Section::where('name', 'A')->first();
 
-                // Attach the group and section to this new GroupSection record
-                $groupSection->groups()->attach($group->id);
-                $groupSection->sections()->attach($section->id);
-            }
+        $b_section = Section::where('name', 'B')->first();
+
+        $c_section = Section::where('name', 'C')->first();
+
+        $d_section = Section::where('name', 'D')->first();
+
+        $group_sections = [
+            [
+                'group_id' => $first_group->id,
+                'section_id' => $a_section->id,
+            ],
+            [
+                'group_id' => $first_group->id,
+                'section_id' => $b_section->id,
+            ],
+            [
+                'group_id' => $first_group->id,
+                'section_id' => $c_section->id,
+            ],
+            [
+                'group_id' => $first_group->id,
+                'section_id' => $d_section->id,
+            ],
+        ];
+        
+        // GroupSection::insert($group_sections);
+
+        foreach ($group_sections as $row) 
+        {
+            GroupSection::create($row);
         }
     }
 }

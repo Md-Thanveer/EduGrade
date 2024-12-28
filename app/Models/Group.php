@@ -26,4 +26,11 @@ class Group extends Model
     {
         return $this->belongsToMany(Section::class, 'group_section', 'group_id', 'section_id');
     }
+    /**
+     * The group sections associated with the group.
+     */
+    public function groupSections()
+    {
+        return $this->hasMany(GroupSection::class);
+    }
 }

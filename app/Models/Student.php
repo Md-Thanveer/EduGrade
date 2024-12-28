@@ -17,4 +17,10 @@ class Student extends Model
         'gender',
         'dob'
     ];
+
+    public function groupSections()
+    {
+        return $this->belongsToMany(GroupSection::class, 'student_group_section', 'student_id', 'group_section_id')
+                    ->withTimestamps();
+    }
 }
